@@ -193,11 +193,7 @@ interface Movable {
 }
 ```
 
-
-
-
-
-# Version8 动态代理
+### Version8 动态代理
 
 ```java
  /*
@@ -229,7 +225,7 @@ public class Tank implements Movable {
 		//Proxy类 通过反射得到 类 接口
         Movable m = (Movable)Proxy.newProxyInstance(Tank.class.getClassLoader(),
                 new Class[]{Movable.class}, //tank.class.getInterfaces()
-                new LogHander(tank)//指定move被调用时 
+                new LogHander(tank)//指定move被调用时 ,实现的接口
         );
 
         m.move();
@@ -262,25 +258,18 @@ interface Movable {
 
 
 
-
-
-
+### Version10-通过反射观察生成的代理对象
 
 ![image-20211104095709898](https://raw.githubusercontent.com/handsomeyi/Pics/master/image-20211104095709898.png)
 
 
 
 ```java
-package com.mashibing.dp.proxy.v10;
-
-
-
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.util.Arrays;
 import java.util.Random;
-
 /**
  * 问题：我想记录坦克的移动时间
  * 最简单的办法：修改代码，记录时间
@@ -317,7 +306,9 @@ public class Tank implements Movable {
 
     public static void main(String[] args) {
         Tank tank = new Tank();
-
+ 
+        
+ //把生产的proxy  class通过反射生成为实体文件       
         System.getProperties().put("jdk.proxy.ProxyGenerator.saveGeneratedFiles","true");
 
         Movable m = (Movable)Proxy.newProxyInstance(Tank.class.getClassLoader(),
@@ -344,20 +335,230 @@ class TimeProxy implements InvocationHandler {
     public void after() {
         System.out.println("method stop..");
     }
-
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        //Arrays.stream(proxy.getClass().getMethods()).map(Method::getName).forEach(System.out::println);
+//Arrays.stream(proxy.getClass().getMethods()).map(Method::getName).forEach(System.out::println);
 
         before();
         Object o = method.invoke(m, args);
         after();
         return o;
     }
-
 }
 
 interface Movable {
     void move();
 }
 ```
+
+
+
+### $proxy0-自动生成的
+
+```java
+final class $Proxy0 extends Proxy implements Movable {
+    private static Method m1;
+    private static Method m3;
+    private static Method m2;
+    private static Method m0;
+
+    public $Proxy0(InvocationHandler var1) throws  {
+        super(var1);
+    }
+
+    public final boolean equals(Object var1) throws  {
+        try {
+            return (Boolean)super.h.invoke(this, m1, new Object[]{var1});
+        } catch (RuntimeException | Error var3) {
+            throw var3;
+        } catch (Throwable var4) {
+            throw new UndeclaredThrowableException(var4);
+        }
+    }
+
+    public final void move() throws  {
+        try {
+            super.h.invoke(this, m3, (Object[])null);
+        } catch (RuntimeException | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
+            throw new UndeclaredThrowableException(var3);
+        }
+    }
+
+    public final String toString() throws  {
+        try {
+            return (String)super.h.invoke(this, m2, (Object[])null);
+        } catch (RuntimeException | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
+            throw new UndeclaredThrowableException(var3);
+        }
+    }
+
+    public final int hashCode() throws  {
+        try {
+            return (Integer)super.h.invoke(this, m0, (Object[])null);
+        } catch (RuntimeException | Error var2) {
+            throw var2;
+        } catch (Throwable var3) {
+            throw new UndeclaredThrowableException(var3);
+        }
+    }
+
+    static {
+        try {
+            m1 = Class.forName("java.lang.Object").getMethod("equals", Class.forName("java.lang.Object"));
+            m3 = Class.forName("com.mashibing.dp.proxy.v10.Movable").getMethod("move");
+            m2 = Class.forName("java.lang.Object").getMethod("toString");
+            m0 = Class.forName("java.lang.Object").getMethod("hashCode");
+        } catch (NoSuchMethodException var2) {
+            throw new NoSuchMethodError(var2.getMessage());
+        } catch (ClassNotFoundException var3) {
+            throw new NoClassDefFoundError(var3.getMessage());
+        }
+    }
+}
+```
+
+### 生成代理-Instrument
+
+Instrument
+
+
+
+# cglib-简单很多-不需要接口
+
+底层也是ASM
+
+```java
+/**
+ * CGLIB实现动态代理不需要接口
+ */
+public class Main {
+    public static void main(String[] args) {
+        Enhancer enhancer = new Enhancer();
+        enhancer.setSuperclass(Tank.class);
+        enhancer.setCallback(new TimeMethodInterceptor());
+        Tank tank = (Tank)enhancer.create();
+        tank.move();
+    }
+}
+
+class TimeMethodInterceptor implements MethodInterceptor {
+
+    @Override
+    public Object intercept(Object o, Method method, Object[] objects, MethodProxy methodProxy) throws Throwable {
+
+        System.out.println(o.getClass().getSuperclass().getName());
+        System.out.println("before");
+        Object result = null;
+        result = methodProxy.invokeSuper(o, objects);
+        System.out.println("after");
+        return result;
+    }
+}
+
+class Tank {
+    public void move() {
+        System.out.println("Tank moving claclacla...");
+        try {
+            Thread.sleep(new Random().nextInt(10000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+
+
+
+
+
+
+
+
+# 动态代理
+
+就是在一个本来的生产线上, 加入一些代理, 就是可以实现加入切面, 加入自己的新逻辑代码
+
+
+
+# Spring AOP
+
+![image-20211104165036643](https://raw.githubusercontent.com/handsomeyi/Pics/master/image-20211104165036643.png)
+
+16360,14905806
+
+15584,47590457
+
+00775,67315349
+
+```java
+public class Main {
+    public static void main(String[] args) {
+        ApplicationContext context = new ClassPathXmlApplicationContext("app_auto.xml");
+        Tank t = (Tank)context.getBean("tank");
+        t.move();
+    }
+}
+```
+
+```java
+public class Tank {
+
+    /**
+     * 模拟坦克移动了一段儿时间
+     */
+    public void move() {
+        System.out.println("Tank moving claclacla...");
+        try {
+            Thread.sleep(new Random().nextInt(10000));
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+```java
+@Aspect//注解本体
+public class TimeProxy {
+    //这个str可以用<aop:pointcut id="txPoint" expression="execution(* com.mashibing.service.*.*(..))"/>ji
+    @Before("execution (void com.mashibing.dp.spring.v2.Tank.move())")
+    public void before() {
+        System.out.println("method start.." + System.currentTimeMillis());
+    }
+    @After("execution (void com.mashibing.dp.spring.v2.Tank.move())")
+    public void after() {
+        System.out.println("method stop.." + System.currentTimeMillis());
+    }
+
+}
+```
+
+原始配置文件**app.xml**
+
+```java
+<bean id="tank" class="com.mashibing.dp.spring.v1.Tank"/>
+<bean id="timeProxy" class="com.mashibing.dp.spring.v1.TimeProxy"/>
+
+    //如果用注解, 就可以省略如下代码
+/*
+<aop:config>
+    <aop:aspect id="time" ref="timeProxy">
+        <aop:pointcut id="onmove" expression="execution(void com.mashibing.dp.spring.v1.Tank.move())"/>
+        <aop:before method="before" pointcut-ref="onmove"/>
+        <aop:after method="after" pointcut-ref="onmove"/>
+    </aop:aspect>
+</aop:config>
+*/
+```
+
+
+
+
+
+
+
