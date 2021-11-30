@@ -598,3 +598,47 @@ n.
 (计划或理论的)**提要，纲要**
 schema的复数
 
+
+
+### generic
+
+英 [dʒəˈnerɪk]   美 [dʒəˈnerɪk]  
+adj.
+通用的;一般的;普通的;无厂家商标的;无商标的
+n.
+同“a generic drug"
+复数： generics
+派生词： generically adv.
+
+### crew
+
+英 [kruː]   美 [kruː]  
+n.
+全体船员;(轮船、飞机等上面的)全体工作人员;(轮船、飞机等上面不包括高级职员的)全体乘务员;技术人员团队;专业团队
+v.
+当(尤指船上的)工作人员
+
+### collapse
+
+英 [kəˈlæps]   美 [kəˈlæps]  
+n.
+崩溃;突然失败(如机构、生意或行动的);(突然的)倒塌;塌陷;垮掉;病倒;(因病或体弱的)昏倒
+v.
+(突然)倒塌;(尤指因病重而)晕倒;(尤指工作劳累后)躺下放松
+第三人称单数： collapses现在分词： collapsing过去式： collapsed过去分词： collapsed
+派生词： collapsed adj.
+
+
+
+### retain
+
+英 [rɪˈteɪn]   美 [rɪˈteɪn]  
+**vt.**
+**保持;保留**;持有;继续拥有;继续容纳;聘请(律师等)
+第三人称单数： retains现在分词： retaining过去式： retained过去分词： retained
+
+### retention
+
+英 [rɪˈtenʃn]   美 [rɪˈtenʃn]  
+**n.**
+**保持;维持;保留**;(液体、热量等的)保持，阻滞;记忆力;记性
