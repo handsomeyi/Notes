@@ -198,7 +198,134 @@ sumRegion(2, 1, 4, 3) -> 10
 
 只有真失败了 cur才变化
 
+## code
 
+```java
+package class32;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+public class Code04_AC2 {
+   // 前缀树的节点
+   public static class Node {
+      // 如果一个node，end为空，不是结尾
+      // 如果end不为空，表示这个点是某个字符串的结尾，end的值就是这个字符串
+      public String end;
+      // 只有在上面的end变量不为空的时候，endUse才有意义
+      // 表示，这个字符串之前有没有加入过答案
+      public boolean endUse;
+      public Node fail;
+      public Node[] nexts;
+
+      public Node() {
+         endUse = false;
+         end = null;
+         fail = null;
+         nexts = new Node[26];
+      }
+   }
+
+   public static class ACAutomation {
+      private Node root;
+      public ACAutomation() {
+         root = new Node();
+      }
+
+      public void insert(String s) {//把敏感词 加入前缀树
+         char[] str = s.toCharArray();
+         Node cur = root;
+         int index = 0;
+         for (int i = 0; i < str.length; i++) {
+            index = str[i] - 'a';
+            if (cur.nexts[index] == null) {
+               cur.nexts[index] = new Node();
+            }
+            cur = cur.nexts[index];
+         }
+         cur.end = s;
+      }
+
+      public void build() {//连前缀树的 fail指针
+         Queue<Node> queue = new LinkedList<>();
+         queue.add(root);
+         Node cur = null;
+         Node cfail = null;
+
+         while (!queue.isEmpty()) {
+            // 某个父亲，cur
+            cur = queue.poll();
+            for (int i = 0; i < 26; i++) { // 所有的路
+               // cur -> 父亲  i号儿子，必须把i号儿子的fail指针设置好！
+               if (cur.nexts[i] != null) { // 如果真的有i号儿子
+                  cur.nexts[i].fail = root;//先设置好 如果找到了就改就ok啦
+                  cfail = cur.fail;
+                  while (cfail != null) {
+                     if (cfail.nexts[i] != null) {//父亲的fail 有i号儿子的路
+                        cur.nexts[i].fail = cfail.nexts[i];
+                        break;
+                     }
+                     cfail = cfail.fail;//再往父亲的fail 指向的节点 的fail找
+                  }
+                  queue.add(cur.nexts[i]);
+               }
+            }
+         }
+
+
+      }
+
+      // 大文章：content
+      public List<String> containWords(String content) {
+         char[] str = content.toCharArray();
+         Node cur = root;
+         Node follow = null;
+         int index = 0;
+         List<String> ans = new ArrayList<>();
+         for (int i = 0; i < str.length; i++) {
+            index = str[i] - 'a'; // 路 content的每个字母 所代表的值
+            // 如果当前字符在这条路上没配出来，就随着fail方向走向下条路径
+            while (cur.nexts[index] == null && cur != root) {//cur的下条路没有content中被匹配的样本字母 且 cur不是根
+               cur = cur.fail;//直接失败 cur移动到fail继续判断
+            }
+            // 1) 现在来到的路径，是可以继续匹配的
+            // 2) 现在来到的节点，就是前缀树的根节点
+            cur = cur.nexts[index] != null ? cur.nexts[index]/*可以往下走*/ : root;/*走不了 去root了*/
+            follow = cur;//用follow搂一下
+            while (follow != root) {
+               if (follow.endUse) {//走过了 就不管了
+                  break;
+               }
+               // 不同的需求，在这一段之间修改
+               if (follow.end != null) {
+                  ans.add(follow.end);
+                  follow.endUse = true;
+               }
+               // 不同的需求，在这一段之间修改
+               follow = follow.fail;
+            }
+         }
+         return ans;
+      }
+
+   }
+///////////////////////////////////////////////////////////////////////////////////
+   public static void main(String[] args) {
+      ACAutomation ac = new ACAutomation();
+      ac.insert("dhe");
+      ac.insert("he");
+      ac.insert("abcdheks");
+      // 设置fail指针
+      ac.build();
+
+      List<String> contains = ac.containWords("abcdhekskdjfafhasldkflskdjhwqaeruv");
+      for (String word : contains) {
+         System.out.println(word);
+      }
+   }
+
+}
+```
 
 
 

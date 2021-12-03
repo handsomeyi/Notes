@@ -20,3 +20,11 @@ printf("奇数");
 }else{    
 printf("偶数");
 
+
+
+
+
+https://blog.csdn.net/qq_40178464/article/details/79941843
+
+一维数组拷贝的方式：clone（）方法
+
