@@ -4,6 +4,8 @@
 
 ## 结构图
 
+https://www.processon.com/view/link/61c3489c0e3e7474fb915f6b
+
 <img src="https://raw.githubusercontent.com/handsomeyi/Pics/master/%E7%90%86%E8%A7%A3ZooKeeper%E4%B8%AD%E7%9A%84Watch%26CallBack.png" alt="理解ZooKeeper中的Watch&CallBack"  />
 
 ## 代码
