@@ -1,6 +1,7 @@
 # 一些固定的需要记忆的结论
 
 ---
+# [java归并排序，单线程vs多线程](https://www.cnblogs.com/bobsha/p/5698106.html)
 
 
 ### 任何数%1都是等于0  

@@ -1194,6 +1194,31 @@ public static TreeNode process(int[] nums, int L, int R) {
 }
 ```
 
+
+
+
+
+# 114. 二叉树展开为链表[[二叉树递归套路]]
+
+[114. 二叉树展开为链表](https://leetcode-cn.com/problems/flatten-binary-tree-to-linked-list/)
+
+给你二叉树的根结点 root ，请你将它展开为一个单链表：
+
+展开后的单链表应该同样使用 TreeNode ，其中 right 子指针指向链表中下一个结点，而左子指针始终为 null 。
+展开后的单链表应该与二叉树 先序遍历 顺序相同。
+
+
+
+
+
+
+
+
+
+
+
+
+
 # [116. 填充每个节点的下一个右侧节点指针](https://leetcode-cn.com/problems/populating-next-right-pointers-in-each-node/)(利用条件当队列)
 
 给定一个 完美二叉树 ，其所有叶子节点都在同一层，每个父节点都有两个子节点。
@@ -2552,6 +2577,20 @@ public static boolean canFinish2(int courses, int[][] relation) {
 
 
 
+
+
+# 221. 最大正方形
+
+[221. 最大正方形](https://leetcode-cn.com/problems/maximal-square/)
+
+
+
+# 226. 翻转二叉树
+
+[226. 翻转二叉树](https://leetcode-cn.com/problems/invert-binary-tree/)
+
+
+
 # [237. 删除链表中的节点](https://leetcode-cn.com/problems/delete-node-in-a-linked-list/)
 
 #### 工程上不合理
@@ -3233,7 +3272,17 @@ public ListNode oddEvenList(ListNode head) {
 
 
 
-# [340. 至多包含 K 个不同字符的最长子串](https://leetcode-cn.com/problems/longest-substring-with-at-most-k-distinct-characters)(滑动窗口)
+
+
+# 337. 打家劫舍 III
+
+[337. 打家劫舍 III](https://leetcode-cn.com/problems/house-robber-iii/)
+
+
+
+
+
+# [340. 至多包含 K 个不同字符的最长子串](https://leetcode-cn.com/problems/longest-substring-with-at-most-k-distinct-characters)([[)
 
 #### 用滑动窗口 必须找到窗口内某个值是单调的 才好用
 
@@ -3271,15 +3320,15 @@ return res
 
 - **准备一个栈 存当前深度坐标** 利用递归回溯压栈 得到入栈顺序
 
-  顶	l	整体下标	l
+  顶	l	整体下标	  l
 
   ​		l  第二层下标  l
 
   ​		l  第三层下标  l
 
-  ​		l		......		 l
+  ​		l	 	......	   	  l
 
-  底	l__ __ __  __  __l
+  底	l  __ __ __  __  __l
 
 
 
@@ -3339,6 +3388,168 @@ class TicTacToe {
 
 ![image-20211229153819933](https://s2.loli.net/2021/12/29/VLHbPAv2YqRQzX4.png)
 
+```java
+public class RandomizedSet {  
+     
+   private HashMap<Integer, Integer> keyIndexMap;  
+ private HashMap<Integer, Integer> indexKeyMap;  
+ private int size;  
+  
+ public RandomizedSet() {  
+      keyIndexMap = new HashMap<Integer, Integer>();  
+ indexKeyMap = new HashMap<Integer, Integer>();  
+ size = 0;  
+ }  
+  
+   public boolean insert(int val) {  
+      if (!keyIndexMap.containsKey(val)) {  
+         keyIndexMap.put(val, size);  
+ indexKeyMap.put(size++, val);  
+ return true; }  
+      return false;  
+ }  
+  
+   public boolean remove(int val) {  
+      if (keyIndexMap.containsKey(val)) {  
+         int deleteIndex = keyIndexMap.get(val);  
+ int lastIndex = --size;  
+ int lastKey = indexKeyMap.get(lastIndex);  
+ keyIndexMap.put(lastKey, deleteIndex);  
+ indexKeyMap.put(deleteIndex, lastKey);  
+ keyIndexMap.remove(val);  
+ indexKeyMap.remove(lastIndex);  
+ return true; }  
+      return false;  
+ }  
+  
+   public int getRandom() {  
+      if (size == 0) {  
+         return -1;  
+ }  
+      int randomIndex = (int) (Math.random() * size);  
+ return indexKeyMap.get(randomIndex);  
+ }  
+}
+```
+
+
+
+```java
+class Solution {  
+   private int[] origin;  
+ private int[] shuffle;  
+ private int N;  
+  
+ public Solution(int[] nums) {  
+      origin = nums;  
+ N = nums.length;  
+ shuffle = new int[N];  
+ for (int i = 0; i < N; i++) {  
+         shuffle[i] = origin[i];  
+ }  
+   }  
+  
+   public int[] reset() {  
+      return origin;  
+ }  
+  
+   public int[] shuffle() {  
+      for (int i = N - 1; i >= 0; i--) {  
+         int r = (int) (Math.random() * (i + 1));  
+ int tmp = shuffle[r];  
+ shuffle[r] = shuffle[i];  
+ shuffle[i] = tmp;  
+ }  
+      return shuffle;  
+ }  
+}
+```
+
+# [384. 打乱数组](https://leetcode-cn.com/problems/shuffle-an-array/)
+
+
+
+
+# [347. 前 K 个高频元素](https://leetcode-cn.com/problems/top-k-frequent-elements/)[[门槛堆]]
+给你一个整数数组 `nums` 和一个整数 `k` ，请你返回其中出现频率前 `k` 高的元素。你可以按 **任意顺序** 返回答案。
+
+**得到词频表 然后按照次数维护小根堆 新来的元素能不能把门槛儿干掉
+自己进来 所以不能用大根堆**
+
+```java
+public static class Node {  
+   public int num;  
+ public int count;  
+  
+ public Node(int k) {  
+      num = k;  
+ count = 1;  
+ }  
+}  
+  
+public static class CountComparator implements Comparator<Node> {  
+  
+   @Override  
+ public int compare(Node o1, Node o2) {  
+      return o1.count - o2.count;  
+ }  
+  
+}  
+  
+public static int[] topKFrequent(int[] nums, int k) {  
+   HashMap<Integer, Node> map = new HashMap<>();  
+ for (int num : nums) {  
+      if (!map.containsKey(num)) {  
+         map.put(num, new Node(num));  
+ } else {  
+         map.get(num).count++;  
+ }  
+   }  
+   PriorityQueue<Node> heap = new PriorityQueue<>(new CountComparator());  
+ for (Node node : map.values()) {  
+      if (heap.size() < k || (heap.size() == k && node.count > heap.peek().count)) {  
+         heap.add(node);  
+ }  
+      if (heap.size() > k) {  
+         heap.poll();  
+ }  
+   }  
+   int[] ans = new int[k];  
+ int index = 0;  
+ while (!heap.isEmpty()) {  
+      ans[index++] = heap.poll().num;  
+ }  
+   return ans;  
+}
+```
+
+
+
+# 394. 字符串解码
+
+[394. 字符串解码](https://leetcode-cn.com/problems/decode-string/)
+
+
+
+
+
+# 406. 根据身高重建队列
+
+[406. 根据身高重建队列](https://leetcode-cn.com/problems/queue-reconstruction-by-height/)
+
+
+
+
+
+# 416. 分割等和子集
+
+[416. 分割等和子集](https://leetcode-cn.com/problems/partition-equal-subset-sum/)
+
+
+
+# 437. 路径总和 III
+
+[437. 路径总和 III](https://leetcode-cn.com/problems/path-sum-iii/)
 
 
 
@@ -3346,44 +3557,232 @@ class TicTacToe {
 
 
 
+# [454. 四数相加 II](https://leetcode-cn.com/problems/4sum-ii/)
+
+给你四个整数数组 nums1、nums2、nums3 和 nums4 ，数组长度都是 n ，请你计算有多少个元组 (i, j, k, l) 能满足：
+
+0 <= i, j, k, l < n
+nums1[i] + nums2[j] + nums3[k] + nums4[l] == 0
+
+
+
+给四个数组 A, B, C, D 
+
+AB所有组合 的 和存在表里
+
+CD所有组合 的 和存在表里
+
+然后两个表对应查找答案次数
+
+```java
+public static int fourSumCount(int[] A, int[] B, int[] C, int[] D) {
+   HashMap<Integer, Integer> map = new HashMap<>();
+   int sum = 0;
+   for (int i = 0; i < A.length; i++) {
+      for (int j = 0; j < B.length; j++) {
+         sum = A[i] + B[j];
+         if (!map.containsKey(sum)) {
+            map.put(sum, 1);
+         } else {
+            map.put(sum, map.get(sum) + 1);
+         }
+      }
+   }
+   int ans = 0;
+   for (int i = 0; i < C.length; i++) {
+      for (int j = 0; j < D.length; j++) {
+         sum = C[i] + D[j];
+         if (map.containsKey(-sum)) {
+            ans += map.get(-sum);
+         }
+      }
+   }
+   return ans;
+}
+```
+
+# [673. 最长递增子序列的个数](https://leetcode-cn.com/problems/number-of-longest-increasing-subsequence/)
+
+给定一个未排序的整数数组，找到最长递增子序列的个数。
+
+示例 1:
+
+输入: [1,3,5,4,7]
+输出: 2
+解释: 有两个最长递增子序列，分别是 [1, 3, 4, 7] 和[1, 3, 5, 7]。
+
+![image-20220102162041115](https://s2.loli.net/2022/01/02/TN734cX1BjdG9L2.png)
+
+
+
+长度为1  长度为2 长度为3 ... 长度为10 ... 
+
+分别统计以某个数结尾 的最长长度
+
+然后后面就能依赖了
+
+
+
+**常规**O(n^2)
+
+```java
+// 好理解的方法，时间复杂度O(N^2)
+public static int findNumberOfLIS1(int[] nums) {
+   if (nums == null || nums.length == 0) {
+      return 0;
+   }
+   int n = nums.length;
+   int[] lens = new int[n];
+   int[] cnts = new int[n];
+   lens[0] = 1;
+   cnts[0] = 1;
+   int maxLen = 1;
+   int allCnt = 1;
+   for (int i = 1; i < n; i++) {
+      int preLen = 0;
+      int preCnt = 1;
+      for (int j = 0; j < i; j++) {
+         if (nums[j] >= nums[i] || preLen > lens[j]) {
+            continue;
+         }
+         if (preLen < lens[j]) {
+            preLen = lens[j];
+            preCnt = cnts[j];
+         } else {
+            preCnt += cnts[j];
+         }
+      }
+      lens[i] = preLen + 1;
+      cnts[i] = preCnt;
+      if (maxLen < lens[i]) {
+         maxLen = lens[i];
+         allCnt = cnts[i];
+      } else if (maxLen == lens[i]) {
+         allCnt += cnts[i];
+      }
+   }
+   return allCnt;
+}
+```
+
+==35=>54:00==
+
+```java
+class Solution {
+// 优化后的最优解，时间复杂度O(N*logN)
+	public static int findNumberOfLIS(int[] nums) {
+		if (nums == null || nums.length == 0) {
+			return 0;
+		}
+		ArrayList<TreeMap<Integer, Integer>> dp = new ArrayList<>();
+		int len = 0;
+		int cnt = 0;
+		for (int num : nums) {
+			// num之前的长度，num到哪个长度len+1
+			len = search(dp, num);
+			// cnt : 最终要去加底下的记录，才是应该填入的value
+			if (len == 0) {
+				cnt = 1;
+			} else {
+				TreeMap<Integer, Integer> p = dp.get(len - 1);
+				cnt = p.firstEntry().getValue() - (p.ceilingKey(num) != null ? p.get(p.ceilingKey(num)) : 0);
+			}
+			if (len == dp.size()) {
+				dp.add(new TreeMap<Integer, Integer>());
+				dp.get(len).put(num, cnt);
+			} else {
+				dp.get(len).put(num, dp.get(len).firstEntry().getValue() + cnt);
+			}
+		}
+		return dp.get(dp.size() - 1).firstEntry().getValue();
+	}
+
+	// 二分查找，返回>=num最左的位置
+	public static int search(ArrayList<TreeMap<Integer, Integer>> dp, int num) {
+		int l = 0, r = dp.size() - 1, m = 0;
+		int ans = dp.size();
+		while (l <= r) {
+			m = (l + r) / 2;
+			if (dp.get(m).firstKey() >= num) {
+				ans = m;
+				r = m - 1;
+			} else {
+				l = m + 1;
+			}
+		}
+		return ans;
+	}
+}
+```
 
 
 
 
 
+# [687. 最长同值路径](https://leetcode-cn.com/problems/longest-univalue-path/)[[二叉树递归套路]]
 
+给定一个二叉树，找到最长的路径，这个路径中的每个节点具有相同值。 这条路径可以经过也可以不经过根节点。
 
+**注意**：两个节点之间的路径长度由它们之间的边数表示。
 
+```java
+public static class TreeNode {
+   public int val;
+   public TreeNode left;
+   public TreeNode right;
 
+   public TreeNode(int v) {
+      val = v;
+   }
+}
 
+public static int longestUnivaluePath(TreeNode root) {
+   if (root == null) {
+      return 0;
+   }
+   return process(root).max - 1;
+}
 
+// 建设以x节点为头的树，返回两个信息
+public static class Info {
+   // 在一条路径上：要求每个节点通过且只通过一遍
+   public int len; // 路径必须从x出发且只能往下走的情况下，路径的最大距离
+   public int max; // 路径不要求必须从x出发的情况下，整棵树的合法路径最大距离
 
+   public Info(int l, int m) {
+      len = l;
+      max = m;
+   }
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+private static Info process(TreeNode x) {
+   if (x == null) {
+      return new Info(0, 0);
+   }
+   TreeNode l = x.left;
+   TreeNode r = x.right;
+   // 左树上，不要求从左孩子出发，最大路径
+   // 左树上，必须从左孩子出发，往下的最大路径
+   Info linfo = process(l);
+   // 右树上，不要求从右孩子出发，最大路径
+   // 右树上，必须从右孩子出发，往下的最大路径
+   Info rinfo = process(r);
+   // 必须从x出发的情况下，往下的最大路径
+   int len = 1;
+   if (l != null && l.val == x.val) {
+      len = linfo.len + 1;
+   }
+   if (r != null && r.val == x.val) {
+      len = Math.max(len, rinfo.len + 1);
+   }
+   // 不要求从x出发，最大路径
+   int max = Math.max(Math.max(linfo.max, rinfo.max), len);
+   if (l != null && r != null && l.val == x.val && r.val == x.val) {
+      max = Math.max(max, linfo.len + rinfo.len + 1);
+   }
+   return new Info(len, max);
+}
+```
 
 
 

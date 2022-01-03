@@ -4,13 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "c318b7831fa25b60",
+        "id": "6cd59ce95b58a822",
         "type": "leaf",
-        "dimension": 99.99999999999999,
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Algo/forGreat/NormalGreat/22_.md",
+            "file": "Algo/03_LeetCodeTop/1.md",
             "mode": "source",
             "source": false
           }
@@ -78,13 +77,13 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Algo/forGreat/NormalGreat/22_.md",
+                "file": "Algo/03_LeetCodeTop/1.md",
                 "collapseAll": true,
-                "extraContext": true,
+                "extraContext": false,
                 "sortOrder": "alphabetical",
                 "showSearch": false,
                 "searchQuery": "",
-                "backlinkCollapsed": true,
+                "backlinkCollapsed": false,
                 "unlinkedCollapsed": false
               }
             }
@@ -101,12 +100,24 @@
             }
           },
           {
-            "id": "f5f949597ea9cd21",
+            "id": "41e2bc2e6454ef8a",
             "type": "leaf",
             "state": {
               "type": "outline",
               "state": {
-                "file": "Algo/forGreat/NormalGreat/22_.md"
+                "file": "Algo/03_LeetCodeTop/1.md"
+              }
+            }
+          },
+          {
+            "id": "3493982c8ed53e05",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "Algo/03_LeetCodeTop/1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
               }
             }
           }
@@ -115,19 +126,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 229
+    "width": 311
   },
-  "active": "c318b7831fa25b60",
+  "active": "6cd59ce95b58a822",
   "lastOpenFiles": [
-    "Algo/forGreat/NormalGreat/22_.md",
-    "Algo/Java/Untitled.md",
-    "Word.md",
-    "TODO.md",
-    "Tip.md",
-    "test.md",
-    "README.md",
-    "打怪兽需要花的最小钱数.md",
-    "Uber-nil/eureka源码结构.png",
-    "JavaWeb/Mybatis核心流程图.png"
+    "Algo/03_LeetCodeTop/1.md",
+    "Algo/03_LeetCodeTop/666.md",
+    "JavaWeb/01_JavaWeb.md",
+    "JUC/多线程与高并发.md",
+    "JUC/BytecodeInstruction.png",
+    "JUC/JUC_1.md",
+    "JUC/JVM.png",
+    "JUC/JVM脑图.png",
+    "JUC/System_IO.png",
+    "JUC/Untitled.md"
   ]
 }

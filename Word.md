@@ -32,6 +32,9 @@ vt.
 派生词： deducible adj.
 记忆技巧：de 向下 + duc 引导；带来 + e → 向下引出 → 推论
 
+### Decompile
+反编译;解译
+
 ### trace
 
 英 [treɪs]   美 [treɪs] 
@@ -182,8 +185,15 @@ Groovy
 英 [ˈɡruːvi]   美 [ˈɡruːvi] 
 绝妙的;时髦;律动感;妙趣
 
-### present
+### grok
+-   v.==通过感觉意会==
+-   Web格洛克；神交；格罗克
+词形：-   grokked
+-   grokking
+1.  here's a bad one. . Example after example until people grok the essence of good code.
+    我们不断的讲解一个又一个例子，直到人们对优秀代码的本质心神领会了为止。
 
+### present
 英 [ˈpreznt , prɪˈzent]   美 [ˈpreznt , prɪˈzent] 
 n.
 目前;现在;礼物;礼品
