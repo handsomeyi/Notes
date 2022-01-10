@@ -154,7 +154,7 @@ public static void main(String[] args) {
 
 
 
-返回最大值及其下标
+### 返回最大值及其下标
 
 	int max = 0;
 	int maxIndex = 0;
