@@ -31,6 +31,12 @@ vt.
 举…为例
 第三人称单数： instances复数： instances现在分词： instancing过去式： instanced过去分词： instanced
 
+
+
+### instantiated
+
+实例化;例示;实体化;具现化
+
 ### deduce
 
 英 [dɪˈdjuːs]   美 [dɪˈduːs] 

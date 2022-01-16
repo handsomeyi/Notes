@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Algo/03_LeetCodeTop/1.md",
+            "file": "Algo/Trick/最长递增子序列(LIS).md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 261
+    "width": 301
   },
   "right": {
     "id": "c996a19499e10ef1",
@@ -77,7 +77,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Algo/03_LeetCodeTop/1.md",
+                "file": "Algo/Trick/最长递增子序列(LIS).md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +105,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Algo/03_LeetCodeTop/1.md"
+                "file": "Algo/Trick/最长递增子序列(LIS).md"
               }
             }
           },
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Algo/03_LeetCodeTop/1.md",
+                "file": "Algo/Trick/最长递增子序列(LIS).md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,19 +126,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 311
+    "width": 133
   },
   "active": "6cd59ce95b58a822",
   "lastOpenFiles": [
-    "Algo/03_LeetCodeTop/1.md",
-    "Algo/03_LeetCodeTop/666.md",
-    "JavaWeb/01_JavaWeb.md",
-    "JUC/多线程与高并发.md",
-    "JUC/BytecodeInstruction.png",
-    "JUC/JUC_1.md",
-    "JUC/JVM.png",
-    "JUC/JVM脑图.png",
-    "JUC/System_IO.png",
-    "JUC/Untitled.md"
+    "Algo/Trick/最长递增子序列(LIS).md",
+    "Algo/Tips/递归设计原则.md",
+    "Pasted image 20220112164343.png",
+    "Pasted image 20210115030800.png.md",
+    "Algo/Trick/0x3f3f3f3f.md",
+    "Algo/01_BasicKnowledge/33~47/34_资源限制.md",
+    "Algo/05_Math/牛顿迭代法开根号.md",
+    "Algo/05_Math/约瑟夫环.md",
+    "Algo/05_Math/Anecdote.md",
+    "Algo/03_LeetCodeTop/Int.md"
   ]
 }
