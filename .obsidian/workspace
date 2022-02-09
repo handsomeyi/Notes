@@ -9,7 +9,7 @@
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Algo/Trick/最长递增子序列(LIS).md",
+            "file": "Algo/weekly/22.02.09.md",
             "mode": "source",
             "source": false
           }
@@ -41,7 +41,7 @@
               "type": "search",
               "state": {
                 "query": "",
-                "matchingCase": false,
+                "matchingCase": true,
                 "explainSearch": false,
                 "collapseAll": false,
                 "extraContext": false,
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 301
+    "width": 190
   },
   "right": {
     "id": "c996a19499e10ef1",
@@ -70,6 +70,7 @@
       {
         "id": "d13ba160af41d179",
         "type": "tabs",
+        "dimension": 73.04582210242587,
         "children": [
           {
             "id": "56cc57b5a37d400a",
@@ -77,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Algo/Trick/最长递增子序列(LIS).md",
+                "file": "Algo/weekly/22.02.09.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -105,7 +106,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Algo/Trick/最长递增子序列(LIS).md"
+                "file": "Algo/weekly/22.02.09.md"
               }
             }
           },
@@ -115,30 +116,61 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Algo/Trick/最长递增子序列(LIS).md",
-                "linksCollapsed": false,
+                "file": "Algo/weekly/22.02.09.md",
+                "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
+            }
+          },
+          {
+            "id": "2da05865e921aaeb",
+            "type": "leaf",
+            "state": {
+              "type": "review-queue-list-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "a206372fde3c5f2f",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
             }
           }
         ],
         "currentTab": 2
+      },
+      {
+        "id": "dd0590c9b5469528",
+        "type": "tabs",
+        "dimension": 26.954177897574123,
+        "children": [
+          {
+            "id": "448b1251e2ef1528",
+            "type": "leaf",
+            "state": {
+              "type": "todo",
+              "state": {}
+            }
+          }
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 133
+    "width": 273
   },
   "active": "6cd59ce95b58a822",
   "lastOpenFiles": [
+    "Algo/weekly/22.02.09.md",
+    "Algo/weekly/start.md",
     "Algo/Trick/最长递增子序列(LIS).md",
-    "Algo/Tips/递归设计原则.md",
-    "Pasted image 20220112164343.png",
-    "Pasted image 20210115030800.png.md",
-    "Algo/Trick/0x3f3f3f3f.md",
-    "Algo/01_BasicKnowledge/33~47/34_资源限制.md",
-    "Algo/05_Math/牛顿迭代法开根号.md",
-    "Algo/05_Math/约瑟夫环.md",
-    "Algo/05_Math/Anecdote.md",
-    "Algo/03_LeetCodeTop/Int.md"
+    "Algo/03_LeetCodeTop/Classic.md",
+    "Algo/03_LeetCodeTop/Classic2.md",
+    "Algo/03_LeetCodeTop/Hot.md",
+    "JVM/Test.md",
+    "Z_Pic/Pasted image 20220209212709.png",
+    "Algo/Tips/Tip.md",
+    "Algo/Tips/LeetCodeNote.md"
   ]
 }

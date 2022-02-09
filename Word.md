@@ -334,6 +334,14 @@ adj.
 苗条的;修长的;健康优雅的;整齐的;精心照管的;井然有序的
 第三人称单数： trims现在分词： trimming过去式： trimmed过去分词： trimmed比较级： trimmer最高级： trimmest
 
+
+### tenure
+英 [ˈtenjə(r)]   美 [ˈtenjər]  
+n.
+任期;(尤指重要政治职务的)任职;(尤指大学教师的)终身职位;长期聘用;(房地产的)==保有权;保有期==
+### tenured
+年老代;年老区;获终生教席
+
 ### lexicographical(redis sorted_set 中的字典序)
 
 adj.

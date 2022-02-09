@@ -1,6 +1,6 @@
 # 1
 
-# [[窗口]]给定长度K绳子,求最多盖几个点
+## [[窗口]]给定长度K绳子,求最多盖几个点
 
 给定一个==有序==数组arr，代表坐落在X轴上的点
 
@@ -84,7 +84,7 @@ public static int maxPointTest(int[] arr, int K) {
 
 
 
-# [[图的遍历]]目录下的文件数量 BFS|DFS
+## [[图的遍历]]目录下的文件数量 BFS|DFS
 
 给定一个文件目录的路径，
 
@@ -122,7 +122,7 @@ public static int getFileNumber(String folderPath) {
 }
 ```
 
-# 返回离非负整数num最近的2的某次方
+## 返回离非负整数num最近的2的某次方
 
 给定一个非负整数num，
 
@@ -136,7 +136,7 @@ public static int getFileNumber(String folderPath) {
 
 n-1 是为了: 如果正好是2的某次方 就可以得到自己
 
-# [[贪心]]G,B的最少交换次数 (双指针)
+## [[贪心]]G,B的最少交换次数 (双指针)
 
 一个数组中只有两种字符'G'和’B’，
 
@@ -164,7 +164,7 @@ R指针遍历数组
 
 
 
-# (腾讯)数组中添加运算符得到值的方法数
+## (腾讯)数组中添加运算符得到值的方法数
 
 给定一个数组arr，你可以在每个数字之前决定+或者-, 但是必须所有数字都参与, 再给定一个数target，请问最后算出target的方法数是多少？
 
@@ -214,37 +214,6 @@ public class Code07_TargetSum {
       return ans;
    }
 
-// 优化点一 :
-   // 你可以认为arr中都是非负数
-   // 因为即便是arr中有负数，比如[3,-4,2]
-   // 因为你能在每个数前面用+或者-号
-   // 所以[3,-4,2]其实和[3,4,2]达成一样的效果
-   // 那么我们就全把arr变成非负数，不会影响结果的
-// 优化点二 :
-   // 如果arr都是非负数，并且所有数的累加和是sum
-   // 那么如果target<sum，很明显没有任何方法可以达到target，可以直接返回0
-// 优化点三 :
-   // arr内部的数组，不管怎么+和-，最终的结果都一定不会改变奇偶性
-   // 所以，如果所有数的累加和是sum，
-   // 并且与target的奇偶性不一样，没有任何方法可以达到target，可以直接返回0
-// 优化点四 :
-   // 比如说给定一个数组, arr = [1, 2, 3, 4, 5] 并且 target = 3
-   // 其中一个方案是 : +1 -2 +3 -4 +5 = 3
-   // 该方案中取了正的集合为P = {1，3，5}
-   // 该方案中取了负的集合为N = {2，4}
-
-   // 所以任何一种方案，都一定有 sum(P) - sum(N) = target
-
-   // 现在我们来处理一下这个等式，把左右两边都加上sum(P) + sum(N)，那么就会变成如下：
-   // sum(P) - sum(N) + sum(P) + sum(N) = target + sum(P) + sum(N)
-   // 2 * sum(P) = target + 数组所有数的累加和
-   // sum(P) = (target + 数组所有数的累加和) / 2
-   // 也就是说，任何一个集合，只要累加和是(target + 数组所有数的累加和) / 2
-   // 那么就一定对应一种target的方式
-   // 也就是说，比如非负数组arr，target = 7, 而所有数累加和是11
-   // 求有多少方法组成7，其实就是求有多少种达到累加和(7+11)/2=9的方法
-// 优化点五 :
-   // 二维动态规划的空间压缩技巧
    public static int findTargetSumWays(int[] arr, int target) {
       int sum = 0;
       for (int n : arr) {
@@ -300,9 +269,40 @@ public class Code07_TargetSum {
 }
 ```
 
+// 优化点一 :
+   // 你可以认为arr中都是非负数
+   // 因为即便是arr中有负数，比如[3,-4,2]
+   // 因为你能在每个数前面用+或者-号
+   // 所以[3,-4,2]其实和[3,4,2]达成一样的效果
+   // 那么我们就全把arr变成非负数，不会影响结果的
+// 优化点二 :
+   // 如果arr都是非负数，并且所有数的累加和是sum
+   // 那么如果target<sum，很明显没有任何方法可以达到target，可以直接返回0
+// 优化点三 :
+   // arr内部的数组，不管怎么+和-，最终的结果都一定不会改变奇偶性
+   // 所以，如果所有数的累加和是sum，
+   // 并且与target的奇偶性不一样，没有任何方法可以达到target，可以直接返回0
+// 优化点四 :
+   // 比如说给定一个数组, arr = [1, 2, 3, 4, 5] 并且 target = 3
+   // 其中一个方案是 : +1 -2 +3 -4 +5 = 3
+   // 该方案中取了正的集合为P = {1，3，5}
+   // 该方案中取了负的集合为N = {2，4}
+
+   // 所以任何一种方案，都一定有 sum(P) - sum(N) = target
+
+   // 现在我们来处理一下这个等式，把左右两边都加上sum(P) + sum(N)，那么就会变成如下：
+   // sum(P) - sum(N) + sum(P) + sum(N) = target + sum(P) + sum(N)
+   // 2 * sum(P) = target + 数组所有数的累加和
+   // sum(P) = (target + 数组所有数的累加和) / 2
+   // 也就是说，任何一个集合，只要累加和是(target + 数组所有数的累加和) / 2
+   // 那么就一定对应一种target的方式
+   // 也就是说，比如非负数组arr，target = 7, 而所有数累加和是11
+   // 求有多少方法组成7，其实就是求有多少种达到累加和(7+11)/2=9的方法
+// 优化点五 :
+   // 二维动态规划的空间压缩技巧
 
 
-# (329)最长递增链
+## (329)最长递增链
 
 给定一个二维数组matrix，可以从任何位置出发，每一步可以走向上、下、左、右，四个方向。返回最大递增链的长度。
 例子：
@@ -344,7 +344,7 @@ public static int process2(int[][] m, int i, int j, int[][] dp) {
 
 
 
-# [[线段树]] 法师AOE技能次数
+## [[线段树]] 法师AOE技能次数
 
 给定两个非负数组x和hp，长度都是N，再给定一个正数rangex有序，
 
@@ -353,12 +353,6 @@ range表示法师如果站在x位置，用AOE技能打到的范围是：[x-range
 
 被打到的每只怪兽损失**1点血量**
 返回要把所有怪兽血量清空，**至少需要释放多少次AOE技能**？
-
-
-
-
-
-
 
 每次剪掉的血量 要遍历吗? 不, 用线段树 -> (相当于把计算合并 不用每次计算到每个元素上)
 
@@ -608,7 +602,7 @@ public static class SegmentTree {
 
 # 2
 
-# [[有序表]]能获得的最好收入(Comparator运用)
+## [[有序表]]能获得的最好收入(Comparator运用)
 
 给定数组**hard**和**money**，长度**都为N**, 
 
@@ -677,7 +671,7 @@ public static int[] getMoneys(Job[] job, int[] ability) {
 
 
 
-# 无序数组需要排序的最短子数组长度
+## 无序数组需要排序的最短子数组长度
 
 给定一个数组arr，只能对arr中的一个子数组排序，
 
@@ -733,7 +727,7 @@ public static int findUnsortedSubarray(int[] nums) {
 
 
 
-# [[数据结构设计]]HashMap设计setAll O(1)
+## [[数据结构设计]]HashMap设计setAll O(1)
 
 思路: **类似ZooKeeper的id的感觉** 设置一个time号, 最新值通过time来确定
 
@@ -780,7 +774,7 @@ public static class MyHashMap<K, V> {
 
 
 
-# [[数据结构设计]]接收消息并打印
+## [[数据结构设计]]接收消息并打印
 
 已知一个消息流会不断地吐出整数 1~N，但不一定按照顺序吐出。如果上次打印的数为 i， 那么当 i+1 出现时，请打印 i+1 及其之后接收过的并且连续的所有数，直到 1~N 全部接收 并打印完，请设计这种接收并打印的结构。
 
@@ -875,7 +869,7 @@ public static void main(String[] args) {
 
 
 
-# [[携程]]买可乐(Coding能不能模拟行为加速)
+## [[携程]]买可乐(Coding能不能模拟行为加速)
 
 贩卖机只支持硬币支付，且收退都只支持**10 ，50，100**三种面额
 **一次购买==只能出一瓶可乐==**，且**投钱和找零**都遵循**优先使用大钱**的原则
@@ -915,7 +909,7 @@ a/x(向上取整) = (a + (x - 1))/x   ----   加一个凑不成x的数 再除
 
 
 
-# [[动态规划]] 司机分配 (贪心)
+## [[动态规划]] 司机分配 (贪心)
 
 现有司机N * 2人，调度中心会将所有司机平分给A、B两个区域
 第 i 个司机去A可得收入为income[i] [0]，
@@ -1009,7 +1003,7 @@ public static int maxMoney3(int[][] income) {
 
 
 
-# (coding 套路)返回二叉树中与target距离k的节点
+## (coding 套路)返回二叉树中与target距离k的节点
 
 思路 主要要想到做出记录parents的表
 
@@ -1079,7 +1073,7 @@ public static void createParentMap(Node cur, HashMap<Node, Node> parents) {
 
 
 
-# [[滑动窗口]]最多同时多少场比赛
+## [[滑动窗口]]最多同时多少场比赛
 
 给定一个数组ar,代表每个人的能力值。再给定一个非负数k
 如果两个人能力差值正好为k, 那么可以凑在一起比赛
@@ -1160,7 +1154,7 @@ public static int maxPairNum2(int[] arr, int k) {
 }
 ```
 
-# 最长无重复字符子串长度
+## 最长无重复字符子串长度
 
 思路: 
 
@@ -1206,7 +1200,7 @@ public static int lengthOfLongestSubstring(String s) {
 
 
 
-# [[位运算]]基于"同类" 去重字符串
+## [[位运算]]基于"同类" 去重字符串
 
 只由小写字母（a~z）组成的一批字符串
 
@@ -1333,7 +1327,7 @@ public static boolean hasSizeOfBorder(int size, int[][] right, int[][] down) {
 
 
 
-# ==[[MinBoat问题]]==
+## ==[[MinBoat问题]]==
 
 给定一个正数数组**arr**,代表若干人的体重
 再给定一个正数**limit**,表示所有船共同拥有的载重量
@@ -1396,7 +1390,7 @@ public static int minBoat(int[] arr, int limit) {
 
 
 
-# ==数组长度小 => [[分治]]==最接近目标值的子序列和
+## ==数组长度小 => [[分治]]==最接近目标值的子序列和
 
 给你一个整数数组 **nums** 和一个目标值 **goal** 。
 
@@ -1426,7 +1420,7 @@ public static int minBoat(int[] arr, int limit) {
 
 **然后看单独接近还是两者和更接近**
 
-# [[动态规划]]自由之路
+## [[动态规划]]自由之路
 
 电子游戏“辐射4”中，任务“通向自由”要求玩家到达名为“Freedom Trail Ring”的金属表盘，并使用表盘拼写特定关键词才能开门。
 
@@ -1530,8 +1524,7 @@ public static int dial(int i1, int i2, int size) {
 ```
 
 # 4
-
-# (字节)频繁的数组查询
+## (字节)频繁的数组查询
 
 数组为**{3,2,2,3,1}**,查询为**(1,3,2)**
 意思是在数组里下标0-3这个范围上，有几个2?答案返回2
@@ -1546,7 +1539,7 @@ public static int dial(int i1, int i2, int size) {
 
 有两种思路
 
-- 生成一张表 **HashMap**<Integer, ArrayList<Integer>> 
+- 生成一张表 **HashMap**<Integer, ArrayList < Integer >>
 
   记录每个数 在数组中出现的下标
 
@@ -1567,7 +1560,6 @@ public static int dial(int i1, int i2, int size) {
   然后对前缀个数后减前 可实现O(1)的查询 
 
   **如果数组长度非常小 并且值的返回不大** 可以用这个方法
-
 
 
 ```java
@@ -1649,7 +1641,7 @@ public static int[] generateRandomArray(int len, int value) {
 
 
 
-# 子数组最大累加和
+## 子数组最大累加和
 
 返回一个数组中，最大子数组累加和
 
@@ -1668,7 +1660,7 @@ class Solution {
 
 
 
-# [[数组压缩]]17.24 子矩阵最大累加和(H)
+## [[数组压缩]]17.24 子矩阵最大累加和(H)
 
 给定一个正整数、负整数和 0 组成的 N × M 矩阵，编写代码找出元素总和最大的子矩阵。
 
@@ -1757,7 +1749,7 @@ public static int maxSubArray(int[] arr) {
 
 
 
-# [[从左往右的尝试模型]] (美团)不能相邻的最大子序列累加和
+## [[从左往右的尝试模型]] (美团)不能相邻的最大子序列累加和
 
 返回一个数组中，选择的数字不能相邻的情况下，
 最大子序列累加和
@@ -1814,7 +1806,7 @@ public static int maxSum(int[] arr) {
 
 
 
-# [[预处理结构]]135.分糖果问题(H)
+## [[预处理结构]]135.分糖果问题(H)
 
 n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的评分。
 
@@ -1832,8 +1824,6 @@ n 个孩子站成一排。给你一个整数数组 ratings 表示每个孩子的
 ```
 
 思路:
-
-
 
 - 建立两个数组
 
@@ -1980,7 +1970,7 @@ public static int[] rightCandsAndBase(int[] arr, int left, int right) {
 
 
 
-# [[博弈论]]小人过有鳄鱼的河
+## [[博弈论]]小人过有鳄鱼的河
 
 一个小人通过有鳄鱼的河, 鳄鱼可能会在过河时把人吃掉, 
 
@@ -2000,7 +1990,7 @@ public static int[] rightCandsAndBase(int[] arr, int left, int right) {
 
 
 
-# 生成长度为size的达标数组
+## 生成长度为size的达标数组
 
 生成长度为size的达标数组，什么叫达标？
 达标：对于任意的 **i< k < j** ,满足 **[i] + [j] != [k] * 2**
@@ -2050,7 +2040,7 @@ public static int[] makeNo(int size) {
 
 
 
-# [[样本对应模型]]97.字符串交错组成
+## [[样本对应模型]]97.字符串交错组成
 
 给定三个字符串 s1、s2、s3，请你帮忙验证 s3 是否是由 s1 和 s2 交错 组成的。
 
@@ -2111,7 +2101,7 @@ public static boolean isInterleave(String s1, String s2, String s3) {
 
 
 
-# 218.大楼最高点变化的轮廓线
+## 218.大楼最高点变化的轮廓线
 
 城市的天际线是从远处观看该城市中所有建筑物形成的轮廓的外部轮廓。给你所有建筑物的位置和高度，请返回由这些建筑物形成的 天际线 。
 
@@ -2129,8 +2119,8 @@ heighti 是第 i 座建筑物的高度。
 原题链接：https://leetcode-cn.com/problems/the-skyline-problem
 ![image-20220115220918567](https://s2.loli.net/2022/01/15/4XlCpoIakhTvO9Q.png)
 
-输入：buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
-输出：[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]
+`输入：buildings = [[2,9,10],[3,7,15],[5,12,12],[15,20,10],[19,24,8]]
+输出：[[2,10],[3,15],[7,12],[12,0],[15,10],[20,8],[24,0]]`
 解释：
 图 A 显示输入的所有建筑物的位置和高度，
 图 B 显示由这些建筑物形成的天际线。图 B 中的红点表示输出列表中的关键点。
@@ -2212,17 +2202,261 @@ public static List<List<Integer>> getSkyline(int[][] matrix) {
 ```
 
 
+# 5
+## 1008.前序遍历构造二叉搜索树
+==根据二叉树后序遍历结果生成整棵树==
+https://leetcode-cn.com/problems/construct-binary-search-tree-from-preorder-traversal/
+已知一棵搜索二叉树上没有重复值的节点， 现在有一个数组arr，是这棵搜索二叉树后序遍历的结果 请根据arr生成整棵树并返回头节点
+
+返回与给定前序遍历 **preorder** 相匹配的二叉搜索树（binary search tree）的根结点。
+(回想一下，二叉搜索树是二叉树的一种，其每个节点都满足以下规则，对于 node.left 的任何后代，值总 < node.val，而 node.right 的任何后代，值总 > node.val。此外，前序遍历首先显示节点 node 的值，然后遍历 node.left，接着遍历 node.right。）
+
+```
+题目保证，对于给定的测试用例，总能找到满足要求的二叉搜索树
+示例：
+输入：[8,5,1,7,10,12]
+输出：[8,5,10,1,7,null,12]
+提示：
+1 <= preorder.length <= 100
+1 <= preorder[i] <= 10^8
+preorder 中的值互不相同
+```
 
 
 
+```java
+// 不用提交这个类
+	public static class TreeNode {
+		public int val;
+		public TreeNode left;
+		public TreeNode right;
+
+		public TreeNode() {
+		}
+
+		public TreeNode(int val) {
+			this.val = val;
+		}
+
+		public TreeNode(int val, TreeNode left, TreeNode right) {
+			this.val = val;
+			this.left = left;
+			this.right = right;
+		}
+	}
+
+	// 提交下面的方法
+	public static TreeNode bstFromPreorder1(int[] pre) {
+		if (pre == null || pre.length == 0) {
+			return null;
+		}
+		return process1(pre, 0, pre.length - 1);
+	}
+
+	public static TreeNode process1(int[] pre, int L, int R) {
+		if (L > R) {
+			return null;
+		}
+		int firstBig = L + 1;
+		for (; firstBig <= R; firstBig++) {
+			if (pre[firstBig] > pre[L]) {
+				break;
+			}
+		}
+		TreeNode head = new TreeNode(pre[L]);
+		head.left = process1(pre, L + 1, firstBig - 1);
+		head.right = process1(pre, firstBig, R);
+		return head;
+	}
+
+	// 已经是时间复杂度最优的方法了，但是常数项还能优化
+	public static TreeNode bstFromPreorder2(int[] pre) {
+		if (pre == null || pre.length == 0) {
+			return null;
+		}
+		int N = pre.length;
+		int[] nearBig = new int[N];
+		for (int i = 0; i < N; i++) {
+			nearBig[i] = -1;
+		}
+		Stack<Integer> stack = new Stack<>();
+		for (int i = 0; i < N; i++) {
+			while (!stack.isEmpty() && pre[stack.peek()] < pre[i]) {
+				nearBig[stack.pop()] = i;
+			}
+			stack.push(i);
+		}
+		return process2(pre, 0, N - 1, nearBig);
+	}
+
+	public static TreeNode process2(int[] pre, int L, int R, int[] nearBig) {
+		if (L > R) {
+			return null;
+		}
+		int firstBig = (nearBig[L] == -1 || nearBig[L] > R) ? R + 1 : nearBig[L];
+		TreeNode head = new TreeNode(pre[L]);
+		head.left = process2(pre, L + 1, firstBig - 1, nearBig);
+		head.right = process2(pre, firstBig, R, nearBig);
+		return head;
+	}
+
+	// 最优解
+	public static TreeNode bstFromPreorder3(int[] pre) {
+		if (pre == null || pre.length == 0) {
+			return null;
+		}
+		int N = pre.length;
+		int[] nearBig = new int[N];
+		for (int i = 0; i < N; i++) {
+			nearBig[i] = -1;
+		}
+		int[] stack = new int[N];
+		int size = 0;
+		for (int i = 0; i < N; i++) {
+			while (size != 0 && pre[stack[size - 1]] < pre[i]) {
+				nearBig[stack[--size]] = i;
+			}
+			stack[size++] = i;
+		}
+		return process3(pre, 0, N - 1, nearBig);
+	}
+
+	public static TreeNode process3(int[] pre, int L, int R, int[] nearBig) {
+		if (L > R) {
+			return null;
+		}
+		int firstBig = (nearBig[L] == -1 || nearBig[L] > R) ? R + 1 : nearBig[L];
+		TreeNode head = new TreeNode(pre[L]);
+		head.left = process3(pre, L + 1, firstBig - 1, nearBig);
+		head.right = process3(pre, firstBig, R, nearBig);
+		return head;
+	}
+```
 
 
 
+## [[二叉树递归套路]]二叉树的相等子树 Hash
+拼接hashCode作为Info判断是否相等    极少几率碰撞 人类不可能碰撞出来
+```java
+public static class Node {
+	public int value;
+	public Node left;
+	public Node right;
+	public Node(int v) {
+		value = v;
+	}
+}
+///////////////////////////////////////////////////////////////////////////
+//计数递归
+public static int sameNumber11(Node head) {
+	if (head == null) {
+		return 0;
+	}
+	return sameNumber11(head.left) + sameNumber11(head.right) + (sameTest(head.left, head.right) ? 1 : 0);
+}
+//判断递归
+public static boolean sameTest(Node n1, Node n2) {
+	if (n1 == null ^ n2 == null) return false;//一个空一个不空 => 肯定不相等
+	if (n1 == null && n2 == null) return true;//两个都为空 => 直接相等
+	return n1.value == n2.value && sameTest(n1.left, n2.left) && sameTest(n1.right, n2.right);//两个都有值
+}
+///////////////////////////////////////////////////////////////////////////
+public static int sameNumber22(Node head) {
+	String algorithm = "SHA-256";
+	Hash hash = new Hash(algorithm);//先把hash对象创建好 设置相应的算法 然后可以直接.出来
+	return processTest(head, hash).count;//返回head的信息里面的count 包含了所有子树的count
+}
+
+public static class InfoTest {
+	public int count;
+	public String hashStr;
+	public InfoTest(int count, String hashStr) {
+		this.count = count;
+		this.hashStr = hashStr;
+	}
+}
+public static InfoTest processTest(Node head, Hash hash) {
+	if (head == null) return new InfoTest(0, hash.hashCode("#,"));
+	InfoTest leftInfo = processTest(head.left, hash);
+	InfoTest rightInfo = processTest(head.right, hash);
+	int count = (leftInfo.hashStr.equals(rightInfo.hashStr) ? 1 : 0) + leftInfo.count + rightInfo.count;//本head是否对称
+	String hashStr = hash.hashCode(String.valueOf(head.value) + "," + leftInfo.hashStr + rightInfo.hashStr);
+	return new InfoTest(count, hashStr);
+}
+```
 
 
 
+## [经典]编辑距离问题
+
+主要核心: **如何达到目标最省**
+实用: 在搜索中,得到两个字符串相似程度
+
+```java
+public static int minCost1(String s1, String s2, int ic, int dc, int rc) {
+		if (s1 == null || s2 == null) {
+			return 0;
+		}
+		char[] str1 = s1.toCharArray();
+		char[] str2 = s2.toCharArray();
+		int N = str1.length + 1;
+		int M = str2.length + 1;
+		int[][] dp = new int[N][M];
+		// dp[0][0] = 0
+		for (int i = 1; i < N; i++) {
+			dp[i][0] = dc * i;
+		}
+		for (int j = 1; j < M; j++) {
+			dp[0][j] = ic * j;
+		}
+		for (int i = 1; i < N; i++) {
+			for (int j = 1; j < M; j++) {
+				dp[i][j] = dp[i - 1][j - 1] + (str1[i - 1] == str2[j - 1] ? 0 : rc);
+				dp[i][j] = Math.min(dp[i][j], dp[i][j - 1] + ic);
+				dp[i][j] = Math.min(dp[i][j], dp[i - 1][j] + dc);
+			}
+		}
+		return dp[N - 1][M - 1];
+	}
+
+public static int minCost2(String str1, String str2, int ic, int dc, int rc) {
+		if (str1 == null || str2 == null) {
+			return 0;
+		}
+		char[] chs1 = str1.toCharArray();
+		char[] chs2 = str2.toCharArray();
+		char[] longs = chs1.length >= chs2.length ? chs1 : chs2;
+		char[] shorts = chs1.length < chs2.length ? chs1 : chs2;
+		if (chs1.length < chs2.length) {
+			int tmp = ic;
+			ic = dc;
+			dc = tmp;
+		}
+		int[] dp = new int[shorts.length + 1];
+		for (int i = 1; i <= shorts.length; i++) {
+			dp[i] = ic * i;
+		}
+		for (int i = 1; i <= longs.length; i++) {
+			int pre = dp[0];
+			dp[0] = dc * i;
+			for (int j = 1; j <= shorts.length; j++) {
+				int tmp = dp[j];
+				if (longs[i - 1] == shorts[j - 1]) {
+					dp[j] = pre;
+				} else {
+					dp[j] = pre + rc;
+				}
+				dp[j] = Math.min(dp[j], dp[j - 1] + ic);
+				dp[j] = Math.min(dp[j], tmp + dc);
+				pre = tmp;
+			}
+		}
+		return dp[shorts.length];
+	}
+```
 
 
+## (字节)S2删除最少字符成为S1的子串
 
 
 
