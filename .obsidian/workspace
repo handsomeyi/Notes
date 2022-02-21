@@ -4,12 +4,12 @@
     "type": "split",
     "children": [
       {
-        "id": "6cd59ce95b58a822",
+        "id": "6e2ca90759dba7a5",
         "type": "leaf",
         "state": {
           "type": "markdown",
           "state": {
-            "file": "Algo/weekly/22.02.09.md",
+            "file": "Middleware/Nginx/Load Blalancing.md",
             "mode": "source",
             "source": false
           }
@@ -61,7 +61,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 190
+    "width": 218
   },
   "right": {
     "id": "c996a19499e10ef1",
@@ -78,7 +78,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Algo/weekly/22.02.09.md",
+                "file": "Middleware/Nginx/Load Blalancing.md",
                 "collapseAll": true,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -106,7 +106,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Algo/weekly/22.02.09.md"
+                "file": "Middleware/Nginx/Load Blalancing.md"
               }
             }
           },
@@ -116,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Algo/weekly/22.02.09.md",
+                "file": "Middleware/Nginx/Load Blalancing.md",
                 "linksCollapsed": true,
                 "unlinkedCollapsed": true
               }
@@ -158,19 +158,19 @@
       }
     ],
     "direction": "horizontal",
-    "width": 273
+    "width": 158
   },
-  "active": "6cd59ce95b58a822",
+  "active": "6e2ca90759dba7a5",
   "lastOpenFiles": [
-    "Algo/weekly/22.02.09.md",
-    "Algo/weekly/start.md",
-    "Algo/Trick/最长递增子序列(LIS).md",
-    "Algo/03_LeetCodeTop/Classic.md",
-    "Algo/03_LeetCodeTop/Classic2.md",
-    "Algo/03_LeetCodeTop/Hot.md",
-    "JVM/Test.md",
-    "Z_Pic/Pasted image 20220209212709.png",
+    "Middleware/Nginx/Load Blalancing.md",
+    "Middleware/Redis/RedisUse/02_redis思路.md",
+    "Middleware/Redis/RedisUse/01_Jmeter.md",
+    "Z_Pic/Pasted image 20220220205114.png",
+    "Middleware/Redis/RedisNote/01.md",
+    "Middleware/Redis/RedisNote/02.md",
     "Algo/Tips/Tip.md",
-    "Algo/Tips/LeetCodeNote.md"
+    "Algo/Tips/LeetCodeNote.md",
+    "Algo/Tips/FunnySolution.md",
+    "Algo/Tips/递归设计原则.md"
   ]
 }

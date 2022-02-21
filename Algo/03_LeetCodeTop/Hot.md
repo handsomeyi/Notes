@@ -1885,6 +1885,55 @@ public static void free(char[][] board, int i, int j) {
 }
 ```
 
+1020题目类似 也可以用infect过程来理解
+
+```java
+package class31;
+
+/*
+ * @Auther:deeys
+ * @Date:2022/2/12
+ * @Description:class31
+ * @Version:1.0
+ */
+public class Problem_1020_飞地的数量 {
+    public int numEnclaves(int[][] grid) {
+        int ans = 0;
+        int N = grid.length;
+        int M = grid[0].length;
+        for (int j = 0; j < M; j++) {
+            //第一行和最后一行
+            if (grid[0][j] == 1) infect(grid, 0, j);
+            if (grid[N - 1][j] == 1) infect(grid, N - 1, j);
+        }
+        for (int i = 1; i < N - 1; i++) {
+            //第一列和最后一列
+            if (grid[i][0] == 1) infect(grid, i, 0);
+            if (grid[i][M - 1] == 1) infect(grid, i, M - 1);
+        }
+        //遍历
+        for (int i = 0; i < N; i++) {
+            for (int j = 0; j < M; j++) {
+                if (grid[i][j] == 1) ans++;
+            }
+        }
+        return ans;
+    }
+    public static void infect(int[][] grid, int i, int j) {
+        if (i < 0 || i == grid.length || j < 0 || j == grid[0].length || grid[i][j] != 1/*只有1才能继续感染*/) {
+            return;
+        }
+        grid[i][j] = -1;
+        infect(grid, i + 1, j);
+        infect(grid, i - 1, j);
+        infect(grid, i, j + 1);
+        infect(grid, i, j - 1);
+    }
+}
+
+```
+
+
 # [139. 单词拆分](https://leetcode-cn.com/problems/word-break/)(从左往右的)
 
 给你一个字符串 s 和一个字符串列表 wordDict 作为字典。请你判断是否可以利用字典中出现的单词拼接出 s 。
