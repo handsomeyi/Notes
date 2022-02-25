@@ -1,46 +1,28 @@
-# Manacher
+# Manacher(最长回文子串)
 
-https://www.jianshu.com/p/116aa58b7d81
-
-预处理
+https://www.jianshu.com/p/116aa58b7d81  预处理如下
 
 ![image-20211129113040133](https://raw.githubusercontent.com/handsomeyi/Pics/master/image-20211129113040133.png)
 
 - 回文直径
 
-
-
 - 回文半径
-
-
 
 - 回文半径数组, 生成的帮助数组
 
   parr[ ]
 
-
-
 - 最右回文右边界, 过程中一直更新
 
   int R = -1
-
-
 
 - 最右回文中心点
 
   int C = 1
 
-
-
 ### 第一种情况：i没有被R罩住
 
 在这种情况下，采用**普遍的解法**，将移动的位置为对称中心，向两边扩，同时更新回文半径数组，最右回文右边界R和最右回文右边界的对称中心C。
-
-
-
-
-
-
 
 ### 第二种情况：i被R罩住
 

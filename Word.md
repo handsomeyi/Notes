@@ -31,7 +31,12 @@ vt.
 举…为例
 第三人称单数： instances复数： instances现在分词： instancing过去式： instanced过去分词： instanced
 
+### collaborate
 
+-   US: [kəˈlæbəˌreɪt] 
+-   UK: [kəˈlæbəreɪt] 
+-   v.合作；协作；通敌；勾结敌人
+-   Web协调；串通
 
 ### instantiated
 
