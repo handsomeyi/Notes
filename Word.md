@@ -38,6 +38,16 @@ vt.
 -   v.合作；协作；通敌；勾结敌人
 -   Web协调；串通
 
+
+
+### cascade 
+
+| 词性   | 翻译    | 反向翻译                     |
+| :----- | :------ | :--------------------------- |
+| 名词   | 级联    | cascade, concatenation       |
+| 小瀑布 | cascade |                              |
+| 动词   | 喷流    | cascade, pour, spout, squirt |
+
 ### instantiated
 
 实例化;例示;实体化;具现化
