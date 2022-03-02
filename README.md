@@ -10,7 +10,7 @@ https://www.processon.com/view/link/621838aa079129079ae1de16
 
 ## MySQL
 
-https://www.processon.com/diagraming/62175462e401fd06e2e4cec5
+https://www.processon.com/view/link/621c4c570e3e745d894d3a42
 
 ## SpringCloud
 
