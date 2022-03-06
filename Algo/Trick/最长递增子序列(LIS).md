@@ -117,7 +117,7 @@ class Solution {
         for (int i = 0; i < n; i++) {
             int t = nums[i];
             int l = 1, r = i + 1;
-            while (l < r) {
+            while (l < r) {// 到小于 nums[i]的最大下标
                 int mid = l + r >> 1;
                 if (f[mid] >= t) r = mid;
                 else l = mid + 1;

@@ -10,7 +10,7 @@ https://leetcode-cn.com/problems/zui-chang-bu-han-zhong-fu-zi-fu-de-zi-zi-fu-chu
 public int lengthOfLongestSubstring(String s) {
     Map<Character, Integer> dic = new HashMap<>();
     int res = 0, tmp = 0;
-    for(int j = 0; j < s.length(); j++) {
+    for(int j = 0; j < s.length(); j++) { // 遍历字符串 s
         int i = dic.getOrDefault(s.charAt(j), -1); // 获取索引 i
         dic.put(s.charAt(j), j); // 更新哈希表
         tmp = tmp < j - i ? tmp + 1 : j - i; // dp[j - 1] -> dp[j]
@@ -22,7 +22,56 @@ public int lengthOfLongestSubstring(String s) {
 
 
 
+```java
+public int lengthOfLongestSubstring(String s) {
+        //if(s==null) return 0;这句话可以不加，s.length()长度为0时，不进入下面的循环，会直接返回max=0;
+        //划定当前窗口的坐标为(start,i],左开右闭,所以start的初始值为-1，而非0。
+        int max = 0,start =-1;
+        //使用哈希表map统计 各字符最后一次 出现的索引位置
+        HashMap<Character,Integer> map = new HashMap<>();
+        for(int i=0;i<s.length();i++){
+            char tmp = s.charAt(i);
+//当字符在map中已经存储时，需要判断其索引值index和当前窗口start的大小以确定是否需要对start进行更新:
+//当index>start时，start更新为当前的index,否则保持不变。
+//注意若index作为新的start，计算当前滑动空间的长度时也是不计入的，左开右闭，右侧s[i]会计入，这样也是防止字符的重复计入。
+            if(map.containsKey(tmp)) start = Math.max(start,map.get(tmp));
+            
+            //如果map中不含tmp，此处是在map中新增一个键值对，否则是对原有的键值对进行更新
+            map.put(tmp,i);
+            
+            //i-start,为当前滑动空间(start,i]的长度，若其大于max，则需要进行更新。
+            max = Math.max(max,i-start);
+        }
+        return max;
+    }
+```
 
+
+
+```java
+public int lengthOfLongestSubstring(String s) {
+    // 记录每个字母出现的最后位置
+    HashMap<Character, Integer> hashMap = new HashMap<>();
+    int left = 0;
+    int right = 0;
+    int res = 0;
+    while (right < s.length()) {
+        char ch = s.charAt(right);
+        // 当前值已经出现过了，更新左边界
+        if (hashMap.containsKey(ch)) {
+            // 另 left = 当前值最后一次出现的地方 + 1, 使得[left,right]无重复值
+            // 需要取较大值
+            left = Math.max(left, hashMap.get(ch) + 1);
+        }
+        //更新最后出现下标
+        hashMap.put(ch, right);
+        // [left,right]的长度
+        res = Math.max(res, right - left + 1);
+        right++;
+    }
+    return res;
+}
+```
 
 
 

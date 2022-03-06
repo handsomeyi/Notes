@@ -635,7 +635,7 @@ public static String countAndSay(int n) {
 		ans.append(String.valueOf(times));
 		ans.append(String.valueOf(last[last.length - 1]));
 		return ans.toString();
-	}  vvvfm,
+	}
 ```
 
 # [49. 字母异位词分组](https://leetcode-cn.com/problems/group-anagrams/)(HashMap的使用方式)
