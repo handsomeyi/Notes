@@ -7,8 +7,11 @@
         "id": "d852d6d20fb82563",
         "type": "leaf",
         "state": {
-          "type": "empty",
-          "state": {}
+          "type": "markdown",
+          "state": {
+            "file": "Algo/01_BasicKnowledge/17~32/17_拓扑排序.md",
+            "mode": "source"
+          }
         }
       }
     ],
@@ -65,6 +68,7 @@
             "state": {
               "type": "backlink",
               "state": {
+                "file": "Algo/01_BasicKnowledge/17~32/17_拓扑排序.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -83,5 +87,7 @@
     "collapsed": true
   },
   "active": "d852d6d20fb82563",
-  "lastOpenFiles": []
+  "lastOpenFiles": [
+    "Algo/01_BasicKnowledge/17~32/17_拓扑排序.md"
+  ]
 }
