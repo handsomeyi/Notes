@@ -177,9 +177,9 @@ class Solution {
 
 
 
+# **还是得用前缀和 不能傻了吧唧遍历**
 
-
-
+![image-20220308115540376](https://s2.loli.net/2022/03/08/nefUGPVag7vHsyz.png)
 
 
 
