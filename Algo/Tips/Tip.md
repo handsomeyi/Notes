@@ -173,3 +173,22 @@ public static void main(String[] args) {
 
 ### 防止溢出的方法：
 
+# 保留
+
+# 几位小数
+
+```java
+double d = 123.212378;
+String s = String.format("%.4f", d);
+double v = Double.parseDouble(s);
+```
+
+
+
+```java
+// 还可以直接
+System.out.println("%.2f", num);
+```
+
+
+
