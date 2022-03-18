@@ -309,9 +309,9 @@ https://studygolang.com/pkgdoc
 
 IO流操作：      bufio/os                                     java.lang.io
 字符串操作：      strings                                    java.lang.String
-容器           container(heap/list/ring)           	      java.lang.Collection
+容器           container(heap/list/ring)           	   java.lang.Collection
 锁               sync                                       juc
-时间              time                                      java.time/java.lang.Date
+时间              time                               java.time/java.lang.Date
 算数操作          math                                       java.math
 底层Unsafe       unsafe                                     unsafe类       
 ```
@@ -393,6 +393,7 @@ import(
 func main() {
    //var  变量名  变量类型 = 变量值
    var name string = "li_ming"
+    var num int4 = 132
    //方法内部可以直接使用 【 变量名 := 变量值 】 赋值，方法外不可以
    name2:="xiao_hong"
    fmt.Println("name = ",name)

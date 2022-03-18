@@ -115,3 +115,24 @@ public class Test03二叉树DFS {
 }
 ```
 
+
+
+
+
+给出一组候选数![img](https://www.nowcoder.com/equation?tex=\ C) 和一个目标数![img](https://www.nowcoder.com/equation?tex=\ T)，找出候选数中起来和等于![img](https://www.nowcoder.com/equation?tex=%5C%20T) 的所有组合。
+![img](https://www.nowcoder.com/equation?tex=%5C%20C) 中的每个数字在一个组合中只能使用一次。
+
+注意：
+
+- 题目中所有的数字（包括目标数![img](https://www.nowcoder.com/equation?tex=%5C%20T) ）都是正整数
+- 组合中的数字 (![img](https://www.nowcoder.com/equation?tex=a_1%2C a_2%2C … %2C a_k)) 要按非递增排序 (![img](https://www.nowcoder.com/equation?tex=a_1 \leq  a_2 \leq  … \leq  a_k)).
+- 结果中不能包含重复的组合
+
+例如：给定的候选数集是[10,1,2,7,6,1,5]，目标数是8
+
+解集是：
+
+[1, 7]
+[1, 2, 5]
+[2, 6]
+[1, 1, 6]
