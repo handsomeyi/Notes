@@ -1,5 +1,7 @@
 # Java
 
+
+
 ### JVM
 
    JVM由三部分组成：**==类加载子系统==**、**==执行引擎==**、**==运行时数据区==**. 
@@ -1123,7 +1125,7 @@ r => 100(4), r => 010(2), x => 001(1),  - => 0
 
 **==chown==** => 文件和目录权限可通过chomd来修改
 
-```shell
+```bash
 [root@yl-web-test ~]# mkdir permission
 [root@yl-web-test ~]# cd permission/
 [root@yl-web-test permission]# ls
