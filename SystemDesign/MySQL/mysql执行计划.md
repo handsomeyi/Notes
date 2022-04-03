@@ -8,22 +8,22 @@
 
 ### 1、执行计划中包含的信息
 
-|    Column     |                    Meaning                     |
-| :-----------: | :--------------------------------------------: |
-|      id       |            The `SELECT` identifier             |
-|  select_type  |               The `SELECT` type                |
-|     table     |          The table for the output row          |
-|  partitions   |            The matching partitions             |
-|     type      |                 The join type                  |
-| possible_keys |         The possible indexes to choose         |
-|      key      |           The index actually chosen            |
-|    key_len    |          The length of the chosen key          |
-|      ref      |       The columns compared to the index        |
-|     rows      |        Estimate of rows to be examined         |
+|    Column     | Meaning                                        |
+| :-----------: | :--------------------------------------------- |
+|      id       | The `SELECT` identifier                        |
+|  select_type  | The `SELECT` type                              |
+|     table     | The table for the output row                   |
+|  partitions   | The matching partitions                        |
+|     type      | The join type                                  |
+| possible_keys | The possible indexes to choose                 |
+|      key      | The index actually chosen                      |
+|    key_len    | The length of the chosen key                   |
+|      ref      | The columns compared to the index              |
+|     rows      | Estimate of rows to be examined                |
 |   filtered    | Percentage of rows filtered by table condition |
-|     extra     |             Additional information             |
+|     extra     | Additional information                         |
 
-**id**
+## **id**
 
 select查询的序列号，包含一组数字，表示查询中执行select子句或者操作表的顺序
 
@@ -47,7 +47,7 @@ explain select * from emp e where e.deptno in (select d.deptno from dept d where
 explain select * from emp e join dept d on e.deptno = d.deptno join salgrade sg on e.sal between sg.losal and sg.hisal where e.deptno in (select d.deptno from dept d where d.dname = 'SALES');
 ```
 
-**select_type**
+## **select_type**
 
 主要用来分辨查询的类型，是普通查询还是联合查询还是子查询
 
@@ -95,7 +95,7 @@ explain select staname,ename supname from (select ename staname,mgr from emp) t 
 --uncacheable union:表示union的查询结果不能被缓存：sql语句未验证
 ```
 
-**table**
+## **table**
 
 对应行正在访问哪一个表，表名或者别名，可能是临时表或者union合并结果集
 		1、如果是具体的表名，则表明从实际的物理表中获取数据，当然也可以是表的别名
@@ -104,7 +104,7 @@ explain select staname,ename supname from (select ename staname,mgr from emp) t 
 
 ​		3、当有union result的时候，表名是union n1,n2等的形式，n1,n2表示参与union的id
 
-**type**
+## **type**
 
 type显示的是访问类型，访问类型表示我是以何种方式去访问我们的数据，最容易想的是全表扫描，直接暴力的遍历一张表去寻找需要的数据，效率非常低下，访问的类型有很多，效率从最好到最坏依次是：
 
@@ -146,7 +146,7 @@ explain select * from emp where empno = 7369;
 --system：表只有一行记录（等于系统表），这是const类型的特例，平时不会出现
 ```
 
- **possible_keys** 
+##  **possible_keys** 
 
 ​        显示可能应用在这张表中的索引，一个或多个，查询涉及到的字段上若存在索引，则该索引将被列出，但不一定被查询实际使用
 
@@ -154,7 +154,7 @@ explain select * from emp where empno = 7369;
 explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 10;
 ```
 
-**key**
+## **key**
 
 ​		实际使用的索引，如果为null，则没有使用索引，查询中若使用了覆盖索引，则该索引和查询的select字段重叠。
 
@@ -162,7 +162,7 @@ explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 1
 explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 10;
 ```
 
-**key_len**
+## **key_len**
 
 表示索引中使用的字节数，可以通过key_len计算查询中使用的索引长度，在不损失精度的情况下长度越短越好。
 
@@ -170,7 +170,7 @@ explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 1
 explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 10;
 ```
 
-**ref**
+## **ref**
 
 显示索引的哪一列被使用了，如果可能的话，是一个常数
 
@@ -178,7 +178,7 @@ explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 1
 explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 10;
 ```
 
-**rows**
+## **rows**
 
 根据表的统计信息及索引使用情况，大致估算出找出所需记录需要读取的行数，此参数很重要，直接反应的sql找了多少数据，在完成目的的情况下越少越好
 
@@ -186,11 +186,10 @@ explain select * from emp,dept where emp.deptno = dept.deptno and emp.deptno = 1
 explain select * from emp;
 ```
 
-**extra**
+## **extra**
 
-包含额外的信息。
+包含额外的信息.
 
-```sql
 --using filesort:说明mysql无法利用索引进行排序，只能利用排序算法进行排序，会消耗额外的位置
 explain select * from emp order by sal;
 
@@ -207,5 +206,4 @@ explain select * from t_user where id = 1;
 
 --impossible where：where语句的结果总是false
 explain select * from emp where empno = 7469;
-```
 
