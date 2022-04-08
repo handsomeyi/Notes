@@ -136,3 +136,93 @@ public class Test03二叉树DFS {
 [1, 2, 5]
 [2, 6]
 [1, 1, 6]
+
+
+
+
+
+https://leetcode-cn.com/problems/minimum-height-trees/comments/1488504
+
+
+
+```java
+	public List<Integer> findMinHeightTrees(int n, int[][] edges) {
+        // 看了评论才知道, 可以通过找到最长链的中点(1-2个)确定那个根
+        // 因为对于最长链上的中点, 它的两个子树(一个点可以多个儿子,
+        // 但是属于最长链的就两个儿子)都是都是等长(对于偶数长度的最
+        // 长链的两个中点的两个子树长度也只差1), 如果从这个中点往外找任意一个
+        // 点作为根, 它都有一条路经过中点然后加上最长链的一条边
+        // 以上为个人理解
+        // 可以通过不断删除度为1的结点最后剩下1-2个结点来找到中点
+        // 个人理解: 删除度为1的结点, 可以看作对一条长链表删除两端(因为其它从
+        // 根结点出来的路径会更短, 因此都会在长链表删除结束前被删除完)
+        // 最后删除到中点
+        // 记录每节课的度
+        int[] degree = new int[n];
+        int[][] neighbours = new int[n][];
+        for (int[] edge : edges) { // 遍历边记录每个节点度数
+            degree[edge[0]]++;
+            degree[edge[1]]++;
+        }
+        // 初始化neighbours
+        for (int i = 0; i < n; i++) {
+            neighbours[i] = new int[degree[i] + 1];
+        }
+        for (int[] edge : edges) {
+            
+            
+            neighbours[edge[0]][++neighbours[edge[0]][0]] = edge[1];
+            neighbours[edge[1]][++neighbours[edge[1]][0]] = edge[0];
+        }
+        // 将入度为1的入队(将度为0的也入队是因为有测试用例只有一个结点)
+        LinkedList<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < n; i++) {
+            if (degree[i] == 1 || degree[i] == 0) {
+                queue.add(i);
+            }
+        }
+        // 如果剩下的结点大于2, 那么所有结点还没入队
+        while (n > 2) {
+            int size = queue.size();
+            for (; size-- > 0; n--) {
+                Integer node = queue.poll();
+                if (node == null) {
+                    // idea的警告
+                    continue;
+                }
+                int neighbourLength = neighbours[node][0];
+                for (int i = 1; i <= neighbourLength; i++) {
+                    if (--degree[neighbours[node][i]] == 1) {
+                        queue.add(neighbours[node][i]);
+                    }
+                }
+            }
+        }
+
+        List<Integer> result = new ArrayList<>(queue.size());
+        while (!queue.isEmpty()) {
+            result.add(queue.poll());
+        }
+        return result;
+   }
+
+
+// 第一次发现可以不赋初值, 等要用的时候再给每个数组开辟空间. (new int[3][];)
+public static void main(String[] args) {
+    int[][] nums = new int[3][];
+    nums[0] = new int[5];
+    for (int i = 0; i < nums[0].length; i++) {
+        nums[0][i] = i;
+    }
+    nums[1] = new int[3];
+    for (int i = 0; i < nums[1].length; i++) {
+        nums[1][i] = i;
+    }
+    nums[2] = new int[9];
+    for (int i = 0; i < nums[2].length; i++) {
+        nums[2][i] = i;
+    }
+    System.out.println(Arrays.deepToString(nums));
+    // [[0, 1, 2, 3, 4], [0, 1, 2], [0, 1, 2, 3, 4, 5, 6, 7, 8]]
+}
+```
