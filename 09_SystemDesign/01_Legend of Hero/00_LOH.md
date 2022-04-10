@@ -47,14 +47,6 @@ public class ServerMain {
 
 
 
-
-
-
-
-
-
-
-
 # ServerMain
 
 加入log4j
@@ -382,3 +374,4 @@ cast是啥?
 ## 设计CmdHandlerFactory工厂类
 
 new什么样的Handler我不管 我直接丢给工厂
+
