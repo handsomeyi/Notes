@@ -28,12 +28,22 @@ https://www.processon.com/view/link/62183928079129079ae1e07f
 
 # Resource
 
-## For interview
+### 以下资源来自互联网
 
-https://github.com/doocs/advanced-java
+知识仓库: https://github.com/doocs/advanced-java
 
 基础知识: https://www.zhihu.com/question/414988138/answer/2083841630
 
 架构知识: https://www.cnblogs.com/crazymakercircle/p/13917517.html
+
+游戏架构: https://blog.codingnow.com/
+
+
+
+
+
+
+
+
 
 ![image-20220405164723274](https://s2.loli.net/2022/04/05/t52MovYNGgiBbVJ.png)

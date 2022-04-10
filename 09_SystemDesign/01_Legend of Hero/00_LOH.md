@@ -375,3 +375,63 @@ cast是啥?
 
 new什么样的Handler我不管 我直接丢给工厂
 
+
+
+
+
+
+
+# 把登陆 查库的逻辑 异步化!
+
+就是把查库送去另一个线程(asyncOp.doAsync();)
+让他查库, 查完之后, 回调函数继续执行逻辑(doFinish).
+
+防止主厨师出来传菜 => 查库就是传菜 => 防止主线程去查库
+
+## 异步优缺点
+
+参考: http://t.csdn.cn/JAdYo
+
+**优点**
+
+1) I/O受限 => 异步能提高性能
+2) 增强系统健壮性  
+3) 改善用户体验 => (减少其他用户的响应时间)
+
+**缺点**
+
+1) 滥用异步, 会影响性能
+2) 增加编程难度   
+
+**异步实现**
+
+1. 专用线程
+
+   ```java
+   System.Threading.ThreadStart ts = new System.Threading.ThreadStart(void(object state) target);   
+   System.Threading.Thread th = new System.Threading.Thread(ts);   
+   ts.Start();   
+   ```
+
+   调用 Start()方法之前, 并没有实质性得创建线程资源, 而是 Start()后才进行创建, 此种方式的好
+   处在于能设置线程是前台线程还是后台线程, 并且能控制线程的挂起和消亡   
+
+2. 线程池
+
+   ```java
+   // 都是后台线程
+   ThreadPool.QueueUserWorkItem(WaitCallback callback) 
+   ```
+
+
+3. 使用异步编程模型 
+
+   ```java
+   BeginXXX(…IAsyCallBack callback, object asyState); 
+   EndXXX(IAsyState ar); //这种模型的好处上面已经有所阐述
+   ```
+
+
+4) 使用 BackgroundWorker
+.Net2.0 下提供了 BackgroundWorker, 使用它可以轻易的完成异步操作, 并且它还有一些功能
+上的加强, 比如取消操作
