@@ -449,11 +449,15 @@ JDK1.8因为是尾插法所以没有这个问题
 
 # **类串哈析隆 两等两notify**
 
+getclass tostring hash finalize clone  equals wait notify notifyall
+
+
+
 1. getClass--final方法, 获得运行时类型. 
 
 2. toString——对象的字符串表示形式（对象所属类的名称+@+转换为十六进制的对象的哈希值组成的字符串 ）
 
-3. equas方法——如果没有重写用的就是Object里的方法, 和== 一样都是比较两个引用地址是否相等, 或则基本数据类型值是否相等
+3. equals方法——如果没有重写用的就是Object里的方法, 和== 一样都是比较两个引用地址是否相等, 或则基本数据类型值是否相等
 
 4. Clone方法——保护方法, 实现对象的浅克隆, 只有实现了Cloneable接口才可以调用该方法, 否则抛出CloneNotSupportedException异常. 
 

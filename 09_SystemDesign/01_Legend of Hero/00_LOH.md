@@ -435,3 +435,23 @@ new什么样的Handler我不管 我直接丢给工厂
 4) 使用 BackgroundWorker
 .Net2.0 下提供了 BackgroundWorker, 使用它可以轻易的完成异步操作, 并且它还有一些功能
 上的加强, 比如取消操作
+
+
+
+# if-continue代码风格非常优美(for循环内)
+
+循环中if-continue写法可以**减少主逻辑代码的缩进**，==**代码美观度**==稍好一点，代价是判断逻辑要取反，不太直观。
+
+```java
+for (GameMsgProtocol.MsgCode msgCode : GameMsgProtocol.MsgCode.values()) {
+    String strMsgCode = msgCode.name();
+    strMsgCode = strMsgCode.replaceAll("_", ""); // 把下划线干没
+    strMsgCode = strMsgCode.toLowerCase();
+    if (!strMsgCode.startsWith(clazzName)) { // 没匹配上
+        continue;
+    }
+    // 后续业务逻辑
+    // ......
+}
+```
+
