@@ -1,6 +1,40 @@
 # 英雄传说MMORPG
 
-这是一个利用了Netty框架和Protobuf序列化的简单游戏demo
+## 遇到的难题
+
+### 用PackageUtil工具类空格问题
+
+背景: 用packageUtil把一个包里的所有类, 放到一个set里面, 方便初始化, 易于扩展.
+
+在利用这个工具类的时候获取clazzSet, 就是想把所有类型的消息处理器放到一个set里头
+结果在**debug的时候发现** => 源码意外里面发现本地path的url => 里面有一个 %20 
+之前在利用protobuf生成java代码的时候也遇见过, 所以就在path上找问题
+因为这个util没有对空格形式特殊处理, 所以set一直没找到, 消息一直没被处理.
+我又认为这个命名不规范, 我索性就把文件夹名字去掉了空格.
+
+一定要规范命名
+
+### 低级错误
+
+把build好的msg对象弃之而不用, 只用它做了一个判空处理. (而且idea也没提示, 因为我用到了msg对象)
+然后实际该用它的时候填错了, 填的是原本的消息体(一个字节数组) => 一直出错
+也是debug的时候发现了...
+
+### MySQL连接问题(折磨王)
+
+1. **时区问题** => UTC GMT
+
+2. **驱动问题**
+
+   mysql-connector-java 6.0+ => com.mysql.cj.jdbc.Driver
+
+   mysql-connector-java 6.0- => com.mysql.jdbc.Driver
+
+3. **数据库版本问题**
+
+
+
+这是一个利用了Netty框架和Protobuf序列化的简单游戏服务端的demo
 
 客户端用cocos => Protobuf => 服务端Netty
 
@@ -145,6 +179,8 @@ WhoElseIsHereCmdHandler.class;
 
 ### Redis + RocketMQ 排行榜系统是如何实现的?
 
+![image-20220323235920704](https://s2.loli.net/2022/04/12/DesM4jSJdCnlmty.png)
+
 **Redis**
 
 是存在库里 => 用户要的时候才返回(并不是实时的)
@@ -202,7 +238,7 @@ WhoElseIsHereCmdHandler.class;
 
 ![image-20220412020822459](https://s2.loli.net/2022/04/12/vHt4N3inZBwV6CW.png)
 
-把RocketMQ启动起来 => Broker 
+把RocketMQ 和 启动起来 => Broker 
 
 先是传到GetRankCmdHandler => 然后调用获取排名服务
 
@@ -216,14 +252,21 @@ WhoElseIsHereCmdHandler.class;
 
 
 
-# 如果给100万人排序怎么排?
+### 如果给100万人排序怎么排?
 
 5000个桶, 实时记录分数变化, 特殊处理前两百名. 每个人排名就是之前桶的总和.
 
 https://blog.codingnow.com/2014/03/mmzb_db_2.html
 
 
-# 日志系统用的什么? FEK是什么?
+
+### 日志系统用的什么? FEK是什么?
+
+Elasticsearch是个开源分布式搜索引擎，提供搜集、分析、存储数据三大功能。它的特点有：分布式，零配置，自动发现，索引自动分片，索引副本机制，restful风格接口，多数据源，自动搜索负载等。
+
+Logstash(此项目用Filebeat) 主要是用来日志的搜集、分析、过滤日志的工具，支持大量的数据获取方式。一般工作方式为c/s架构，client端安装在需要收集日志的主机上，server端负责将收到的各节点日志进行过滤、修改等操作在一并发往elasticsearch上去.
+
+Kibana 也是一个开源和免费的工具，Kibana可以为 Logstash 和 ElasticSearch 提供的日志分析友好的 Web 界面，可以帮助汇总、分析和搜索重要数据日志。
 
 用的FileBeat(收集) + Elasticsearch(存储, 搜索) + Kibana(展示)
 
@@ -237,9 +280,56 @@ https://blog.codingnow.com/2014/03/mmzb_db_2.html
 
 如何**配置**?
 
-装好Filebeat => 修改filebeat.yml配置文件 => 
+**==装好Filebeat => 修改filebeat.yml配置文件== =>** 
 
-配置log目录位置, 配置es网络位置, Kibana网络位置
+**==配置log目录位置, 配置es网络位置, Kibana网络位置==**
 
 # 网约车SpringCloud
 
+参与了一个网约车项目, 它基于微服务实现的, 用到了SpringCloud相关的一些组件.
+
+## Eureka
+
+![image-20220412123525389](https://s2.loli.net/2022/04/12/toz1HInDLxwsJKr.png)
+
+## Zuul
+
+之前再zuul配置实现
+
+动态路由 => 扩展方便 => 统一逻辑路由
+
+## Ribbon
+
+服务间调用
+
+## JWT是什么
+
+由服务端根据规范生成一个令牌（token），并且发放给客户端。
+此时客户端请求服务端的时候就可以携带者令牌，以令牌来证明自己的身份信息。
+作用：类似session保持登录状态 的办法，通过token来代表用户身份。
+
+它由三部分组成：**头部**、**载荷**与**签名** header.payload.signature
+
+**JWT令牌的优点: **
+
+jwt基于json，非常方便解析可以再令牌中自定义丰富的内容，易扩展（payload可以扩展）通过签名，让JWT防止被篡改，安全性高资源服务使用JWT可不依赖认证服务即可完成授权
+
+a、**token到底生成什么样最好？（规则），每个用户要唯一**
+
+三部分组成：头部、载荷与签名 header.payload.signature
+
+b、**token返回给客户端之后，服务端还要保存吗？**
+
+服务端不需要保存
+
+c、**校验token时，怎么保证数据并没有被黑客拦截并篡改？（安全）**
+
+signature中有私钥来进行签名，可以保证安全性
+
+d、**token颁发给客户端之后，要不要有过期时间？**
+
+需要设置token过期时间
+
+e、**多次登录生成的token都是一样的吗？都是可用的吗？**
+
+可以再payload加上时间戳，来保证每次生成的token都不一样，都是可用的

@@ -66,6 +66,22 @@ kernel自己监控, 当数据到达 => 返回ready的fd => 然后B再调用**rea
 
 ![image-20220323160701976](https://s2.loli.net/2022/03/23/LKxJfjaTtFvgzqc.png)
 
+```c++
+epoll_create()
+
+epoll_ctl() 
+
+epoll_wait()
+就绪队列
+
+```
+
+### ==epoll源码详解==
+
+epoll源码详解: https://www.cnblogs.com/l2017/p/10830391.html
+
+
+
 
 
 ###  **==在 Linux 的设计中有三种典型的 I/O 多路复用模型 select、poll、epoll. ==** 
