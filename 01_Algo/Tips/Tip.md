@@ -192,3 +192,10 @@ System.out.println("%.2f", num);
 
 
 
+# 排列组合A,C如何计算
+
+![image-20220512002736665](C:\Users\handsomeyi\AppData\Roaming\Typora\typora-user-images\image-20220512002736665.png)
+
+A就是 下标 乘到 (下标-上标+1) 
+
+C就是 m

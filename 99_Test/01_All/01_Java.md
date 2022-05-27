@@ -266,8 +266,7 @@ Collection
     Queue
     	PriorityQueue // 模拟堆, 按照元素顺序排序
     	Deque
-    
-
+   
 Map
 	HashMap
 	HashSet
