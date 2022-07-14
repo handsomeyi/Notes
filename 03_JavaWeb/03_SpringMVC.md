@@ -131,7 +131,7 @@ INSERT INTO `books`(`bookID`,`bookName`,`bookCounts`,`detail`)VALUES
         </dependency>
         <!--数据库驱动-->
         <dependency>
-            <groupId>mysql</groupId>
+            <groupId>mysql</groupId> 
             <artifactId>mysql-connector-java</artifactId>
             <version>5.1.47</version>
         </dependency>

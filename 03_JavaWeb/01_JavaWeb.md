@@ -620,7 +620,7 @@ public class car {
 
 **现在的MVC架构:**
 
-![image-20211116144411775](https://raw.githubusercontent.com/handsomeyi/Pics/master/image-20211116144411775.png)
+<img src="https://raw.githubusercontent.com/handsomeyi/Pics/master/image-20211116144411775.png" alt="image-20211116144411775" style="zoom:150%;" />
 
 
 

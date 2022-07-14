@@ -2,6 +2,30 @@
 
 # 简单例子-Comparable
 
+**把所有的策略，存到了一个 Map里，通过对key来获取对应的实现方式来执行。value存的是lambda函数的形式。**
+
+```java
+// 通过对key 获取=> 实现方式, value存lambda函数的形式
+public class XxxxStrategyContext {
+    private Map<String, BiFunction<String, String, String>> strategyMap;
+    // 把具体策略lambda函数存入map
+    public void initStrategies();
+    public String doSomethingByStrategy(String arg1, String arg2, String key) {
+        return biFunction.apply(arg1, arg2);
+    }
+}
+// 写具体实现的策略方法
+public class XxxxStrategyImpl {
+    
+}
+```
+
+
+
+
+
+
+
 **就是决策方法由我们自己实现, 框架已经有了, 直接 implements 接口就行了.**
 
 ```java
